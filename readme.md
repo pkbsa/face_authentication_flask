@@ -8,12 +8,12 @@ To run the program, you will need to:
 - Install C++ compiler by Visual Studio.
 - Type the following commands in the command line:
 
-`
+```
 pip install cmake
 pip install dlib
 pip3 install face_recognition
 python main.py
-`
+```
 
 Don't forget to change the image path in the `main.py` file to match the image that you want to use.
 
