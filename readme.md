@@ -15,12 +15,13 @@ pip3 install face_recognition
 python main.py
 ```
 
-Don't forget to change the image path in the `main.py` file to match the image that you want to use.
+You will need to register with the image that you want to use in order to login
 
 ## Quick Peek of the System
 - `/`<br>
 <img src="/images/home.png" alt="Homepage">
 <img src="/images/login.png" alt="login">
+<img src="/images/register.png" alt="register">
 
 - `/dashboard`<br>
 <img src="/images/dashboard.png" alt="dashboard">

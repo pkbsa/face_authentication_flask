@@ -100,6 +100,7 @@
               </div>
               <!-- End File Details -->
               
+              
     
               <script>
                 function showLoading() {
@@ -123,7 +124,24 @@
                 Register
               </button>
           </form>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Image</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user in users %}
+                <tr>
+                  <td>{{ user.username }}</td>
+                  <td><img src="{{ url_for('uploaded_file', filename=user.image_name) }}" alt="{{ user.username }}" width="100"></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
+        
         <!-- End Upload Area -->
     <script src="{{ url_for('static',filename='script.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

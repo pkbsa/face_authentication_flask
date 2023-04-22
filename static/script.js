@@ -41,8 +41,6 @@ const toolTipData = document.querySelector('.upload-area__tooltip-data');
 const imagesTypes = [
   "jpeg",
   "png",
-  "svg",
-  "gif"
 ];
 
 // Append Images Types Array Inisde Tooltip Data
