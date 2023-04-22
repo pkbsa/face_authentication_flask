@@ -1,14 +1,17 @@
+import os
+import uuid
 import face_recognition
 from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
+# Folder to store user images
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads')
+if not os.path.isdir(UPLOAD_FOLDER):
+    os.mkdir(UPLOAD_FOLDER)
+
 # Dummy data for demo purposes
-users = [
-    {'username': 'Nitit', 'image_path': 'D:/.Mahidol University/year 3/Security/Project/Data/Nitit_data.png'},
-    {'username': 'Siranut', 'image_path': 'D:/.Mahidol University/year 3/Security/Project/Data/Siranut_data.png'},
-    {'username': 'Tawan', 'image_path': 'D:/.Mahidol University/year 3/Security/Project/Data/Tawan_data.png'}
-]
+users = []
 
 # Homepage
 @app.route('/')
@@ -16,11 +19,35 @@ def index():
     message = ''
     return render_template('index.html', error=message)
 
+# Register page
+@app.route('/register')
+def register():
+    message = ''
+    return render_template('register.html', error=message)
+
+# Register form submission
+@app.route('/register', methods=['POST'])
+def register_submit():
+    username = request.form['username']
+    image_file = request.files['fileInput']
+
+    # Save uploaded image file to uploads folder
+    unique_filename = str(uuid.uuid4()) + '.png'
+    image_path = os.path.join(UPLOAD_FOLDER, unique_filename)
+    image_file.save(image_path)
+
+    # Add user to list
+    users.append({'username': username, 'image_path': image_path})
+
+    # Successful registration
+    message = 'Registration successful. Please log in.'
+    return render_template('register.html', error=message)
+
 # Login form submission
 @app.route('/login', methods=['POST'])
 def login():
+    print(users)
     # Get form data
-
     image_file = request.files['fileInput']
 
     # Authenticate user using face recognition
@@ -32,12 +59,13 @@ def login():
             unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
             face_distances = face_recognition.face_distance([known_encoding], unknown_encoding)
         except:
-          message = 'We were unable to verify your identity based on the uploaded image. Please try again.'
+          print("cannot find face")
+          message = 'We were unable to find any faces based on the uploaded image. Please try again.'
           return render_template('index.html', error=message)
-        
-        print(face_distances[0])
 
-        if face_distances[0] < 0.6:
+            print(face_distances)
+        if face_distances[0] < 0.5:
+            
             # Successful login
             return redirect(url_for('dashboard'))
 

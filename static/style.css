@@ -13,9 +13,10 @@
     --clr-light-blue: rgb(171, 202, 255);
   }
   
-  body {
+  .uploadBody {
     margin: 0;
-    padding: 0;
+    padding-top: 10vmin;
+    padding-bottom: 10vmin;
     background-color: var(--clr-light);
     color: var(--clr-black);
     font-family: 'Poppins', sans-serif;
@@ -354,4 +355,20 @@
 }
 #loadingbar{
   display: none;
+}
+.my-navbar{
+  position: absolute;
+  display: flex;
+  width: 100vw;
+  justify-content: flex-end;
+  padding: 3vmin 5vmin;
+  gap: 3vmin
+}
+#registerform{
+  padding: 4vmin;
+  border: 1px solid black;
+  border-radius: 30px;
+}
+input[type=text]{
+  margin: 5px 0px 10px 0px
 }

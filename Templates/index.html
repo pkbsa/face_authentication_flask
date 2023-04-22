@@ -13,18 +13,10 @@
   </head>
 
   <body>
-    <!-- <div class="container">
-      <h1>Login</h1>
-      <div class="form-container">
-        <form action="/login" method="post" enctype="multipart/form-data">
-          <label for="image">Image:</label>
-          <input type="file" name="image" id="image" />
-          <input type="submit" value="Login" />
-        </form>
-        <p class="error-message">{{ error }}</p>
-      </div>
-    </div> -->
-    <!-- Upload Area -->
+   <div class="my-navbar">
+    <a href="/register">Register</a>
+   </div>
+   <div class="uploadBody">
     <div class="main-container">
       <h2>Login to our System</h2>
       {% if error %}
@@ -129,6 +121,7 @@
       </form>
     </div>
     <!-- End Upload Area -->
+  </div>
     <script src="{{ url_for('static',filename='script.js')}}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
